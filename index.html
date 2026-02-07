@@ -41,6 +41,15 @@
       <p class="lyric-line"></p>
     </div>
 
+    <div class="ending-message">
+      <div class="ending-content">
+        <h1 class="ending-title">Happy Rose Day, Meghana! 🌹</h1>
+        <p class="ending-text">You make every moment beautiful</p>
+        <p class="ending-text">Thank you for being you ♥</p>
+        <div class="ending-heart">♥</div>
+      </div>
+    </div>
+
     <div class="night"></div>
     <div class="flowers">
       <div class="flower flower--1">
@@ -353,12 +362,22 @@
           if (currentTime !== lastTime) {
             lastTime = currentTime;
             console.log('Current time:', currentTime);
+            
+            // Show lyrics
             lyrics.forEach(lyric => {
               if (currentTime === lyric.time) {
                 console.log('Match found for time:', lyric.time);
                 showLyric(lyric.text, currentTime);
               }
             });
+            
+            // Show ending message at 110 seconds
+            if (currentTime === 110) {
+              document.querySelector('.lyrics-container').style.opacity = '0';
+              setTimeout(() => {
+                document.querySelector('.ending-message').classList.add('show');
+              }, 500);
+            }
           }
         });
       }
